@@ -161,7 +161,7 @@ const countryList = {
     ZWD: "ZW",
   };
 
-  const BASE_URL="https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
+  const BASE_URL="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies";
 
 const dropdowns=document.querySelectorAll('.dropdown select');
 const btn=document.querySelector('form button');
@@ -219,11 +219,11 @@ const updateExchangeRate=async ()=>{
     amt.value='1';
    }
 
-   const URL=`${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
+   const URL=`${BASE_URL}/${fromCurr.value.toLowerCase()}.json`;
    //we are using .value to get the value from the element and converting it to lower case bcz api works in lower case.
    let response=await fetch(URL);
    let data=await response.json();
-   let rate=data[toCurr.value.toLowerCase()];
+   let rate=data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
    let finalAmt=rate * amtValue;
 
    mssg.innerText=`${amtValue} ${fromCurr.value} = ${finalAmt} ${toCurr.value}`;
